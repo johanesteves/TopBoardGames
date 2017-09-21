@@ -2,11 +2,6 @@ class TopBoardGames::Game
   attr_accessor :title, :rank, :url, :avg_rating, :description, :game_id, :weight, :min_playtime, :max_playtime, :min_age
   @@all = []
 
-
-  def self.game
-    
-  end
-
   def self.new_from_main_page(game_row)
     title = game_row.css(".collection_objectname a").text
     url = game_row.css(".collection_objectname a").attr("href").text
@@ -17,7 +12,6 @@ class TopBoardGames::Game
     self.new(title, rank, url, avg_rating, game_id)
 
   end
-
 
   def initialize(title = nil, rank = nil, url = nil, avg_rating = nil, game_id=nil)
     @title = title
@@ -38,7 +32,24 @@ class TopBoardGames::Game
   end
 
   def stats_url
-    Nokogiri::HTML(open("https://www.boardgamegeek.com/xmlapi2/thing?id=#{self.game_id}"))
+    Nokogiri::HTML(open("https://www.boardgamegeek.com/xmlapi2/thing?id=#{self.game_id}&stats=1"))
   end
+
+  def weight
+    @weight ||=stats_url.search("averageweight").first['value']
+  end
+
+  def min_playtime
+    @min_playtime ||=stats_url.search("minplaytime").first['value']
+  end
+
+  def max_playtime
+    @max_playtime ||=stats_url.search("maxplaytime").first['value']
+  end
+
+  def min_age
+    @min_age||=stats_url.search("minage").first['value']
+  end
+
   
 end

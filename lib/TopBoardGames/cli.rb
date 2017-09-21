@@ -2,7 +2,7 @@ class TopBoardGames::CLI
 
   def call
     TopBoardGames::Scraper.new.make_boardgames
-    binding.pry
+    #binding.pry
     menu
     #list_boardgames
   end
@@ -25,14 +25,24 @@ class TopBoardGames::CLI
     puts "", "Greetings! Here you will be able to see a list of the top 100 boardgames"
     navigation_menu
     input = nil
+    game_list(input)
+  end
 
+  def game_list(input)
     while input != "exit"
       input  = gets.strip.downcase
 
       if input == "1"
         puts "Here are the following 1-20:", ""
         list_boardgames(0..19)
-        navigation_menu
+        puts "", "Choose which game you would like more information on or type '[m]enu'"
+        input = gets.strip.downcase
+        if input == "menu"
+          navigation_menu
+        else
+          display_game_description(@boardgames[input.to_i-1])
+        end
+
       elsif input == "2"
         puts "Here are the following 21-40:", ""
         list_boardgames(20..39)
@@ -55,22 +65,24 @@ class TopBoardGames::CLI
         puts "You have entered an invalid input"
       end
     end
-
   end
 
 
   def display_game_description(game)
-    puts "==========================================="
-    puts "More information about #{game.rank}. #{game.title.upcase}"
-    puts "-------------------------------------------"
+    puts "", "More information about:", "========================================================="
+    puts game.title.upcase
+    puts "========================================================="
     puts "Overall Rank: #{game.rank}"
     puts "Average Rating: #{game.avg_rating}"
     puts "Weight: #{game.weight}"
+    #binding.pry
     if game.min_playtime == game.max_playtime
-      puts "Estimated Playtime: #{game.min_playtime}"
+      puts "Estimated Playtime: #{game.min_playtime} mins"
     else
-      puts "Estimated Playtime: #{game.min_playtime} - #{game.min_playtime} mins"
+      puts "Estimated Playtime: #{game.min_playtime} - #{game.max_playtime} mins"
     end
     puts "Recommended Age: #{game.min_age}+"
+    puts "Description:"
+    puts game.description, ""
   end
 end
