@@ -1,4 +1,5 @@
 require "spec_helper"
+require "TopBoardGames"
 
 RSpec.describe TopBoardGames do
   it "has a version number" do
