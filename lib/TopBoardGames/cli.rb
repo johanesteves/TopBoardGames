@@ -38,7 +38,7 @@ class TopBoardGames::CLI
 
   def nav_menu
     input = nil
-    while !["exit", "e"].include?(input)
+    until ["exit", "e"].include?(input)
       input = gets.strip.downcase
       if ["menu", "m"].include?(input)
         game_list
