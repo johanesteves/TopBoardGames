@@ -17,12 +17,23 @@ class TopBoardGames::Scraper
 
   def scrape_topboardgames
     self.get_main_page.css(".collection_table tr#row_")
-    #@URL = table.css(".collection_objectname a").attr("href")
+    #url = table.css(".collection_objectname a").attr("href")
     #Title = table.css(".collection_objectname a").text
     #AVG RATING = table.collect {|i| i.css(".collection_bggrating")[1].text.strip}
   end
 
+
   def scrape_description_page
 
+  end
+
+  def make_boardgames
+
+   scrape_topboardgames.each do |row|
+     #binding.pry
+     TopBoardGames::Game.new_from_main_page(row)
+   end
+
+    #this will create new board games and iterate of the main_page
   end
 end
