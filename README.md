@@ -1,8 +1,6 @@
 # TopBoardGames
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/TopBoardGames`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to the Top BoardGames Gem. This gem will allow you to view the current top 100 boardgames on <strong>BoardGameGeek.com</strong>. You will be not only view the top 100, but also view more detailed information about a particular boardgame.  
 
 ## Installation
 
