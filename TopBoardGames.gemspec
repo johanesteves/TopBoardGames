@@ -8,7 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = TopBoardGames::VERSION
   spec.authors       = ["johanesteves"]
   spec.email         = ["jsesteves91@gmail.com"]
-
+  spec.executables   << 'top-boardgames'
+  spec.require_paths = ["lib", "lib/TopBoardGames"]
   spec.summary       = "Returns list of top 100 boardgames from www.boardgamegeek.com"
   spec.description   = "Returns list of top 100 boardgames from www.boardgamegeek.com, also allows to get boardgame description"
   spec.homepage      = "https://github.com/johanesteves"
