@@ -4,4 +4,4 @@ require "bundler/setup"
 #require "TopBoardGames"
 require_relative '../lib/TopBoardGames'
 
-TopBoardGames::CLI.new.cal
+TopBoardGames::CLI.new.call

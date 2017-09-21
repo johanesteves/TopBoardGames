@@ -20,7 +20,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To start type in:
+
+    $ ./bin/top-boardgames 
+    
+And follow the prompts on screen.
 
 ## Development
 
