@@ -5,6 +5,12 @@ class TopBoardGames::CLI
     start
   end
 
+  def start
+    puts "", "Greetings! Here you will be able to see a list of the top 100 boardgames", ""
+    game_list
+    nav_menu
+  end
+
   def list_boardgames(input)
     @boardgames = TopBoardGames::Game.all
     @boardgames[input].each do |game|
@@ -12,35 +18,30 @@ class TopBoardGames::CLI
     end
   end
 
-  def navigation_menu
-    puts "","Please choose which list you would like to see:"
+  def game_list
     puts " (1)       (2)       (3)       (4)       (5)"
     puts "01-20 --- 21-40 --- 41-60 --- 61-80 --- 81-100"
+    puts "","Enter the list you would like to see:"
     input  = gets.strip.downcase
     inputs = {1 => [1,20], 2 => [21, 40], 3 => [41, 60], 4 => [61, 80], 5 => [81,100]}
 
     if input.to_i > 0
-      puts "Here are the #{inputs[input.to_i][0]}-#{inputs[input.to_i][1]} top boardgames:", ""
+      puts "","TOP BOARDGAMES: #{inputs[input.to_i][0]}-#{inputs[input.to_i][1]}"
+      puts "========================================================="
       list_boardgames((inputs[input.to_i][0])-1..(inputs[input.to_i][1])-1) # list_boardgames(0..19)
       puts "========================================================="
       puts "", "Enter boardgame number you wish to view", "Enter '[m]enu' to return the main menu", "Enter '[e]xit' to quit program" ,"" ,"Enter your selection:"
     end
-
-
+    #abort("Goodbye!!") if ["exit", "e"].include?(input)
   end
 
-  def start
-    puts "", "Greetings! Here you will be able to see a list of the top 100 boardgames"
-    navigation_menu
-    game_list
-  end
 
-  def game_list
+  def nav_menu
     input = nil
-    while input != "exit"
+    while !["exit", "e"].include?(input)
       input = gets.strip.downcase
-      if ["menu", "m"].include?(input) #
-        navigation_menu
+      if ["menu", "m"].include?(input)
+        game_list
       elsif input.to_i >0
         display_game_description(@boardgames[input.to_i-1])
       elsif ["exit", "e"].include?(input)
