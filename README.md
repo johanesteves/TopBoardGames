@@ -22,7 +22,7 @@ Or install it yourself as:
 
 To start type in:
 
-    $ ./bin/top-boardgames 
+    $ top-boardgames 
     
 And follow the prompts on screen.
 
