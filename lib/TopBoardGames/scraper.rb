@@ -28,12 +28,7 @@ class TopBoardGames::Scraper
   end
 
   def make_boardgames
-
-   scrape_topboardgames.each do |row|
-     #binding.pry
-     TopBoardGames::Game.new_from_main_page(row)
-   end
-
     #this will create new board games and iterate of the main_page
+    scrape_topboardgames.each {|row| TopBoardGames::Game.new_from_main_page(row)}
   end
 end

@@ -2,6 +2,7 @@ class TopBoardGames::CLI
 
   def call
     TopBoardGames::Scraper.new.make_boardgames
+    binding.pry
     menu
     #list_boardgames
   end
@@ -55,5 +56,21 @@ class TopBoardGames::CLI
       end
     end
 
+  end
+
+
+  def display_game_description(game)
+    puts "==========================================="
+    puts "More information about #{game.rank}. #{game.title.upcase}"
+    puts "-------------------------------------------"
+    puts "Overall Rank: #{game.rank}"
+    puts "Average Rating: #{game.avg_rating}"
+    puts "Weight: #{game.weight}"
+    if game.min_playtime == game.max_playtime
+      puts "Estimated Playtime: #{game.min_playtime}"
+    else
+      puts "Estimated Playtime: #{game.min_playtime} - #{game.min_playtime} mins"
+    end
+    puts "Recommended Age: #{game.min_age}+"
   end
 end

@@ -1,5 +1,5 @@
 class TopBoardGames::Game
-  attr_accessor :title, :rank, :url, :avg_rating, :descrption, :game_id, :weight, :min_playtime, :max_playtime, :min_age
+  attr_accessor :title, :rank, :url, :avg_rating, :description, :game_id, :weight, :min_playtime, :max_playtime, :min_age
   @@all = []
 
 
@@ -30,6 +30,15 @@ class TopBoardGames::Game
 
   def self.all
     @@all
+  end
+
+  def description
+    description_url = Nokogiri::HTML(open("https://boardgamegeek.com#{self.url}")).at("meta[name='description']")['content'].split("\n")
+    @description ||= (description_url[0] + " " +description_url[2])
+  end
+
+  def stats_url
+    Nokogiri::HTML(open("https://www.boardgamegeek.com/xmlapi2/thing?id=#{self.game_id}"))
   end
   
 end
