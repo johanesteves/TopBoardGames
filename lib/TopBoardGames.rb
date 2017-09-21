@@ -1,5 +1,10 @@
-require "TopBoardGames/version"
+# require 'nokogiri'
+require 'pry'
+require 'open-uri'
 
-module TopBoardGames
-  # Your code goes here...
-end
+require_relative "./TopBoardGames/version"
+require_relative "./TopBoardGames/cli"
+require_relative "./TopBoardGames/game"
+require_relative "./TopBoardGames/scraper"
+
+
