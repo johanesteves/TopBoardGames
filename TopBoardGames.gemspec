@@ -8,7 +8,6 @@ Gem::Specification.new do |spec|
   spec.version       = TopBoardGames::VERSION
   spec.authors       = ["johanesteves"]
   spec.email         = ["jsesteves91@gmail.com"]
-  spec.executables   << 'top-boardgames'
   spec.summary       = "Returns list of top 100 boardgames from www.boardgamegeek.com"
   spec.description   = "Returns list of top 100 boardgames from www.boardgamegeek.com, also allows to get boardgame description"
   spec.homepage      = "https://github.com/johanesteves"
@@ -23,12 +22,11 @@ Gem::Specification.new do |spec|
       "public gem pushes."
   end
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features)/})
-  end
-  spec.bindir        = "exe"
-  #spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.files         = `git ls-files`.split($\)
+
+  #spec.bindir        = "exe"
+  spec.executables   = 'top-boardgames'
+  spec.require_paths = ["lib", "lib/TopBoardGames"]
 
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
