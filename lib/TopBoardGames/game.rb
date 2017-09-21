@@ -10,7 +10,6 @@ class TopBoardGames::Game
     rank = game_row.css(".collection_rank").text.strip
 
     self.new(title, rank, url, avg_rating, game_id)
-
   end
 
   def initialize(title = nil, rank = nil, url = nil, avg_rating = nil, game_id=nil)
@@ -50,5 +49,4 @@ class TopBoardGames::Game
   def min_age
     @min_age||=stats_url.search("minage").first['value']
   end
-  
 end
