@@ -23,8 +23,9 @@ Gem::Specification.new do |spec|
   end
 
   spec.files         = `git ls-files`.split($\)
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
 
-  #spec.bindir        = "exe"
+  spec.bindir        = "bin"
   spec.executables   = 'top-boardgames'
   spec.require_paths = ["lib", "lib/TopBoardGames"]
 
