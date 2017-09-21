@@ -1,12 +1,17 @@
 class TopBoardGames::CLI
 
   def call
+    TopBoardGames::Scraper.new.make_boardgames
     menu
     #list_boardgames
   end
 
-  def list_boardgames
-    #@boardgames = TopBoardGames::Game.all
+  def list_boardgames(input)
+    @boardgames = TopBoardGames::Game.all
+
+    @boardgames[input].each do |game|
+      puts "#{game.rank}. #{game.title} //Avg. Rating: #{game.avg_rating}"
+    end
   end
 
 
@@ -17,20 +22,27 @@ class TopBoardGames::CLI
     input = nil
 
     while input != "exit"
-      input  = gets.strip
+      input  = gets.strip.downcase
 
       if input == "1"
-        puts "", "Here are the following 1-20:"
+        puts "Here are the following 1-20:", ""
+        list_boardgames(0..19)
       elsif input == "2"
-        puts "","Here are the following 21-40:"
+        puts "Here are the following 21-40:", ""
+        list_boardgames(20..39)
       elsif input == "3"
-        puts "","Here are the following 41-60:"
+        puts "Here are the following 41-60:", ""
+        list_boardgames(40..59)
       elsif input == "4"
-        puts "","Here are the following 61-80:"
+        puts "Here are the following 61-80:", ""
+        list_boardgames(60..79)
       elsif input == "5"
-        puts "","Here are the following 81-100:"
+        puts "Here are the following 81-100:", ""
+        list_boardgames(80..99)
+      elsif input == "exit"
+        puts "Goodbye!!"
       else
-        puts "","You have entered an invalid input"
+        puts "You have entered an invalid input"
       end
     end
 

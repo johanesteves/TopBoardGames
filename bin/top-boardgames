@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require './lib/TopBoardGames'
-require "TopBoardGame"
+require "bundler/setup"
+require "TopBoardGames"
 
 TopBoardGames::CLI.new.call
