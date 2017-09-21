@@ -1,5 +1,5 @@
 class TopBoardGames::Game
-  attr_accessor :title, :rank, :url, :avg_rating, :description, :game_id, :weight, :min_playtime, :max_playtime, :min_age
+  attr_accessor :title, :rank, :url, :avg_rating, :game_id
   @@all = []
 
   def self.new_from_main_page(game_row)
@@ -50,6 +50,5 @@ class TopBoardGames::Game
   def min_age
     @min_age||=stats_url.search("minage").first['value']
   end
-
   
 end

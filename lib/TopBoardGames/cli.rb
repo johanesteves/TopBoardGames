@@ -2,9 +2,7 @@ class TopBoardGames::CLI
 
   def call
     TopBoardGames::Scraper.new.make_boardgames
-    #binding.pry
     menu
-    #list_boardgames
   end
 
   def list_boardgames(input)
@@ -24,11 +22,11 @@ class TopBoardGames::CLI
   def menu
     puts "", "Greetings! Here you will be able to see a list of the top 100 boardgames"
     navigation_menu
-    input = nil
-    game_list(input)
+    game_list
   end
 
-  def game_list(input)
+  def game_list
+    input = nil
     while input != "exit"
       input  = gets.strip.downcase
 
@@ -75,7 +73,6 @@ class TopBoardGames::CLI
     puts "Overall Rank: #{game.rank}"
     puts "Average Rating: #{game.avg_rating}"
     puts "Weight: #{game.weight}"
-    #binding.pry
     if game.min_playtime == game.max_playtime
       puts "Estimated Playtime: #{game.min_playtime} mins"
     else
